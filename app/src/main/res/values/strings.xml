@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
-    <string name="app_name">UdacityMusicPlayer</string>
+    <string name="app_name">Udacity Music Player</string>
     <string name="action_settings">Settings</string>
 
     <string name="accessibility_play">Play</string>
@@ -36,8 +36,9 @@
     <string name="playlist_recently_played">Recently Played</string>
     <string name="playlist_top_tracks">My Top Tracks</string>
 
-    <string name="timber_source">Report any bugs <u> here </u> </string>
-    <string name="timber_feature_request">Specify any feature request in the Google+ community <u> here </u></string>
+    <string name="linkedin">LinkedIn</string>
+    <string name="github">GitHub</string>
+    <string name="stackoverflow">StackOverflow</string>
 
     <string name="menu_show_as">View As</string>
     <string name="menu_show_as_entry_list">List</string>
@@ -79,7 +80,7 @@
     <string name="personalisation">Personalisation</string>
     <string name="other">Other</string>
     <string name="advanced">Advanced</string>
-    <string name="timber_about_opensource">Timber is a open source Music Player developed by Naman Dwivedi.</string>
+    <string name="timber_about_opensource">Udacity Music Player is the Capstone Project of Phuc Hoang Vinh Truong for the Android Developer Nanodegree 2018 program</string>
     <string name="summary_pause_detach">Toggle for pausing playback when headphone is detached</string>
     <string name="pause_detach">Pause on Detach</string>
     <string name="summary_xposed_trackselector">Requires Xposed and XMediaNotificationTrackSelector Xposed module to be installed. This will provide access to playing queue from the notification bar itself.</string>
