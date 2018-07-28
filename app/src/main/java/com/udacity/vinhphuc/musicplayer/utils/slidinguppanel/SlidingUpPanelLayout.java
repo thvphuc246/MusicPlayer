@@ -1,4 +1,4 @@
-package com.udacity.vinhphuc.musicplayer.slidinguppanel;
+package com.udacity.vinhphuc.musicplayer.utils.slidinguppanel;
 
 import android.annotation.SuppressLint;
 import android.content.Context;

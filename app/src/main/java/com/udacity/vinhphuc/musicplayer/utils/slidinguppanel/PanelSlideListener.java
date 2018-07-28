@@ -1,4 +1,4 @@
-package com.udacity.vinhphuc.musicplayer.slidinguppanel;
+package com.udacity.vinhphuc.musicplayer.utils.slidinguppanel;
 
 /**
  * Created by VINH PHUC on 25/7/2018
