@@ -80,7 +80,7 @@
     <string name="personalisation">Personalisation</string>
     <string name="other">Other</string>
     <string name="advanced">Advanced</string>
-    <string name="timber_about_opensource">Udacity Music Player is the Capstone Project of Phuc Hoang Vinh Truong for the Android Developer Nanodegree 2018 program</string>
+    <string name="app_about_opensource">Udacity Music Player is the Capstone Project of Phuc Hoang Vinh Truong for the Android Developer Nanodegree 2018 program</string>
     <string name="summary_pause_detach">Toggle for pausing playback when headphone is detached</string>
     <string name="pause_detach">Pause on Detach</string>
     <string name="summary_xposed_trackselector">Requires Xposed and XMediaNotificationTrackSelector Xposed module to be installed. This will provide access to playing queue from the notification bar itself.</string>
@@ -138,7 +138,10 @@
     <string name="durationformatlong" translatable="false"><xliff:g id="format">%1$d:%2$02d:%3$02d</xliff:g></string>
 
     <string name="play">Play</string>
+
     <string name="add_to_playlist">Add to playlist</string>
+    <string name="hide_auto_playlists">Hide auto playlists</string>
+
     <string name="go_to_album">Go to album</string>
     <string name="go_to_artist">Go to artist</string>
     <string name="add_to_queue">Add to queue</string>
@@ -167,5 +170,4 @@
     <string name="cast">Cast</string>
     <string name="now_playing_no_track_selected">\"No current track selected.</string>
     <string name="lyrics_loading">Loading...</string>
-
 </resources>
