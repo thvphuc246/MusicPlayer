@@ -25,7 +25,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/timber_about_opensource"
+        android:text="@string/app_about_opensource"
         style="@style/TextAppearance.AppCompat.Body1"
         android:textSize="16sp"
         android:layout_marginTop="15dp"
