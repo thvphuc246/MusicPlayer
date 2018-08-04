@@ -7,9 +7,11 @@ import android.app.ActivityManager;
 import android.content.Context;
 import android.content.res.ColorStateList;
 import android.graphics.Bitmap;
+import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -255,8 +257,18 @@ public final class ATE extends ATEBase {
         // Task description requires fully opaque color
         color = Util.stripAlpha(color);
         // Default is app's launcher icon
-        if (icon == null)
-            icon = ((BitmapDrawable) activity.getApplicationInfo().loadIcon(activity.getPackageManager())).getBitmap();
+        if (icon == null) {
+            Drawable iconDrawable = activity.getApplicationInfo().loadIcon(activity.getPackageManager());
+            icon = Bitmap.createBitmap(
+                    iconDrawable.getIntrinsicWidth(),
+                    iconDrawable.getIntrinsicHeight(),
+                    Bitmap.Config.ARGB_8888
+            );
+            final Canvas canvas = new Canvas(icon);
+            iconDrawable.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
+            iconDrawable.draw(canvas);
+            //icon = ((BitmapDrawable) activity.getApplicationInfo().loadIcon(activity.getPackageManager())).getBitmap();
+        }
 
         // Sets color of entry in the system recents page
         ActivityManager.TaskDescription td = new ActivityManager.TaskDescription(
