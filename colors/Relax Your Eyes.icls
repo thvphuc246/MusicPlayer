@@ -1,7 +1,4 @@
 <scheme name="Relax Your Eyes" version="142" parent_scheme="Default">
-  <option name="FONT_SCALE" value="1.0" />
-  <option name="EDITOR_FONT_SIZE" value="12" />
-  <option name="EDITOR_FONT_NAME" value="Monospaced" />
   <colors>
     <option name="CARET_ROW_COLOR" value="aaccff" />
     <option name="GUTTER_BACKGROUND" value="ffffff" />
