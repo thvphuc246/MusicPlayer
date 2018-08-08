@@ -40,7 +40,7 @@ public class ThemedPreferenceCategory extends PreferenceCategory {
     @Override
     protected void onBindView(View view) {
         super.onBindView(view);
-        ButterKnife.bind(view);
+        ButterKnife.bind(this, view);
 
         titleView.setTextColor(Config.accentColor(context, Helpers.getATEKey(context)));
     }
