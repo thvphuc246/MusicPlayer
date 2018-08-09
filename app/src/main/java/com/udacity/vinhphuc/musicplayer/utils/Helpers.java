@@ -46,9 +46,6 @@ public class Helpers {
 
     public static class AboutDialog extends DialogFragment {
 
-        String urlLinkedin = "https://www.linkedin.com/in/phuc-truong-200296";
-        String urlGitHub = "https://github.com/thvphuc246";
-
         public AboutDialog() {
         }
 
@@ -78,7 +75,7 @@ public class Helpers {
                 @Override
                 public void onClick(View v) {
                     Intent i = new Intent(Intent.ACTION_VIEW);
-                    i.setData(Uri.parse(urlLinkedin));
+                    i.setData(Uri.parse(getResources().getString(R.string.urlLinkedin)));
                     startActivity(i);
                 }
 
@@ -87,7 +84,7 @@ public class Helpers {
                 @Override
                 public void onClick(View v) {
                     Intent i = new Intent(Intent.ACTION_VIEW);
-                    i.setData(Uri.parse(urlGitHub));
+                    i.setData(Uri.parse(getResources().getString(R.string.urlGitHub)));
                     startActivity(i);
                 }
 
@@ -96,7 +93,8 @@ public class Helpers {
                 PackageInfo pInfo = getActivity().getPackageManager().getPackageInfo(getActivity().getPackageName(), 0);
                 String version = pInfo.versionName;
                 int versionCode = pInfo.versionCode;
-                appVersion.setText("Udacity Music Player " + version);
+                String appVersionText = getResources().getString(R.string.app_name) + " " + version;
+                appVersion.setText(appVersionText);
             } catch (PackageManager.NameNotFoundException e) {
                 e.printStackTrace();
             }

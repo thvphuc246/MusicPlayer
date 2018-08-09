@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.preference.PreferenceManager;
 
+import com.udacity.vinhphuc.musicplayer.MusicPlayer;
 import com.udacity.vinhphuc.musicplayer.MusicService;
 
 /**
@@ -45,7 +46,6 @@ public final class PreferencesUtility {
     private static final String SHOW_LOCKSCREEN_ALBUMART = "show_albumart_lockscreen";
     private static final String ARTIST_ALBUM_IMAGE = "artist_album_image";
     private static final String ARTIST_ALBUM_IMAGE_MOBILE = "artist_album_image_mobile";
-    private static final String ALWAYS_LOAD_ALBUM_IMAGES_LASTFM = "always_load_album_images_lastfm";
 
     private static PreferencesUtility sInstance;
 
@@ -263,9 +263,5 @@ public final class PreferencesUtility {
             return true;
         }
         return false;
-    }
-
-    public boolean alwaysLoadAlbumImagesFromLastfm() {
-        return mPreferences.getBoolean(ALWAYS_LOAD_ALBUM_IMAGES_LASTFM, false);
     }
 }

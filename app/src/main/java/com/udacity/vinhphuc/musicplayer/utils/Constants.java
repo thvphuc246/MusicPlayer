@@ -15,6 +15,7 @@ public class Constants {
     public static final String NAVIGATE_PLAYLIST_RECENT = "navigate_playlist_recent";
     public static final String NAVIGATE_PLAYLIST_LASTADDED = "navigate_playlist_lastadded";
     public static final String NAVIGATE_PLAYLIST_TOPTRACKS = "navigate_playlist_toptracks";
+    public static final String NAVIGATE_PLAYLIST_FAVOURITETRACKS = "navigate_playlist_favouritetracks";
     public static final String NAVIGATE_PLAYLIST_USERCREATED = "navigate_playlist";
     public static final String PLAYLIST_FOREGROUND_COLOR = "foreground_color";
     public static final String PLAYLIST_NAME = "playlist_name";
@@ -28,12 +29,7 @@ public class Constants {
 
     public static final String WITH_ANIMATIONS = "with_animations";
 
-    /*public static final String TIMBER1 = "timber1";
-    public static final String TIMBER2 = "timber2";
-    public static final String TIMBER3 = "timber3";
-    public static final String TIMBER4 = "timber4";
-    public static final String TIMBER5 = "timber5";
-    public static final String TIMBER6 = "timber6";*/
+    public static final String NOW_PLAYING = "now_playing";
 
     public static final String NAVIGATE_SETTINGS = "navigate_settings";
     public static final String NAVIGATE_SEARCH = "navigate_search";

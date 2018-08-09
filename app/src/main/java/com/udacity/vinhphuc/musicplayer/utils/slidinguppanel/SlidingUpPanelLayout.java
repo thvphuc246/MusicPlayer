@@ -1120,10 +1120,51 @@ public class SlidingUpPanelLayout extends ViewGroup {
     }
 
     /**
+     * Listener for monitoring events about sliding panes.
+     */
+    public interface PanelSlideListener {
+        /**
+         * Called when a sliding pane's position changes.
+         *
+         * @param panel       The child view that was moved
+         * @param slideOffset The new offset of this sliding pane within its range, from 0-1
+         */
+        void onPanelSlide(View panel, float slideOffset);
+
+        /**
+         * Called when a sliding panel becomes slid completely collapsed.
+         *
+         * @param panel The child view that was slid to an collapsed position
+         */
+        void onPanelCollapsed(View panel);
+
+        /**
+         * Called when a sliding panel becomes slid completely expanded.
+         *
+         * @param panel The child view that was slid to a expanded position
+         */
+        void onPanelExpanded(View panel);
+
+        /**
+         * Called when a sliding panel becomes anchored.
+         *
+         * @param panel The child view that was slid to a anchored position
+         */
+        void onPanelAnchored(View panel);
+
+        /**
+         * Called when a sliding panel becomes completely hidden.
+         *
+         * @param panel The child view that was slid to a hidden position
+         */
+        void onPanelHidden(View panel);
+    }
+
+    /**
      * No-op stubs for {@link PanelSlideListener}. If you only want to implement a subset
      * of the listener methods you can extend this instead of implement the full interface.
      */
-    /*public static class SimplePanelSlideListener implements PanelSlideListener {
+    public static class SimplePanelSlideListener implements PanelSlideListener {
         @Override
         public void onPanelSlide(View panel, float slideOffset) {
         }
@@ -1143,7 +1184,7 @@ public class SlidingUpPanelLayout extends ViewGroup {
         @Override
         public void onPanelHidden(View panel) {
         }
-    }*/
+    }
 
     public static class LayoutParams extends MarginLayoutParams {
         private static final int[] ATTRS = new int[]{
