@@ -13,6 +13,7 @@
 
         <ImageView
             android:id="@+id/blurredAlbumart"
+            android:contentDescription="@string/albumart"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="centerCrop" />
@@ -28,8 +29,8 @@
             android:layout_gravity="center_horizontal|center_vertical"
             android:gravity="center_horizontal|center_vertical"
             android:orientation="vertical"
-            android:paddingLeft="30dp"
-            android:paddingRight="30dp"
+            android:paddingStart="30dp"
+            android:paddingEnd="30dp"
             android:paddingTop="20dp">
 
             <TextView
@@ -56,8 +57,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginLeft="6dp"
-                android:layout_marginRight="6dp"
+                android:layout_marginStart="6dp"
+                android:layout_marginEnd="6dp"
                 android:maxHeight="2dp"
                 android:paddingTop="18dp"
                 android:progress="30"
@@ -99,7 +100,7 @@
                     android:layout_height="48dp"
                     android:layout_weight="0.7"
                     android:background="?attr/selectableItemBackgroundBorderless"
-                    android:paddingLeft="50dp"
+                    android:paddingStart="50dp"
                     android:scaleType="center"
                     app:materialIcon="skip_previous"
                     app:materialIconColor="#fff"
@@ -108,9 +109,9 @@
                 <FrameLayout
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
-                    android:layout_marginRight="5dp"
+                    android:layout_marginEnd="5dp"
                     android:layout_weight="1">
 
                     <com.udacity.vinhphuc.musicplayer.widgets.PlayPauseButton
@@ -133,7 +134,7 @@
                     android:layout_height="48dp"
                     android:layout_weight="0.7"
                     android:background="?attr/selectableItemBackgroundBorderless"
-                    android:paddingRight="50dp"
+                    android:paddingEnd="50dp"
                     android:scaleType="center"
                     app:materialIcon="skip_next"
                     app:materialIconColor="#fff"

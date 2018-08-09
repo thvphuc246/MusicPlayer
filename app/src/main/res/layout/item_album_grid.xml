@@ -30,8 +30,8 @@
                 android:layout_height="68.0dip"
                 android:gravity="center_vertical"
                 android:orientation="vertical"
-                android:paddingLeft="16.0dip"
-                android:paddingRight="16.0dip">
+                android:paddingStart="16.0dip"
+                android:paddingEnd="16.0dip">
 
                 <TextView
                     android:id="@+id/album_title"

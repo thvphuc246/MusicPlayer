@@ -11,7 +11,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="centerCrop"
-        android:id="@+id/album_art"/>
+        android:id="@+id/album_art"
+        android:contentDescription="@string/albumart"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -28,8 +29,8 @@
             android:textColor="#ffffff"
             android:singleLine="true"
             android:ellipsize="end"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
 
         <TextView
@@ -42,8 +43,8 @@
             android:singleLine="true"
             android:ellipsize="end"
             android:layout_marginBottom="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
 
     </LinearLayout>

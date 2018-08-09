@@ -22,7 +22,6 @@
         android:layout_height="match_parent"
         android:layout_alignBottom="@id/album_recycler_view"
         android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
         android:layout_alignTop="@id/album_recycler_view" />
 
 </RelativeLayout>

@@ -8,6 +8,7 @@
 
     <ImageView
         android:id="@+id/imageView_cover"
+        android:contentDescription="@string/albumart"
         android:padding="4dp"
         android:layout_width="100dp"
         android:layout_height="100dp" />
@@ -17,10 +18,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
         android:layout_toEndOf="@id/imageView_cover"
-        android:layout_toRightOf="@id/imageView_cover"
         android:lines="1"
         android:text="@string/tap_to_start"
         android:textColor="@android:color/white"
@@ -31,10 +30,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
         android:layout_below="@id/textView_title"
         android:layout_toEndOf="@id/imageView_cover"
-        android:layout_toRightOf="@id/imageView_cover"
         android:lines="1"
         android:textColor="@android:color/white" />
 
@@ -43,10 +40,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
         android:layout_below="@id/textView_subtitle"
         android:layout_toEndOf="@id/imageView_cover"
-        android:layout_toRightOf="@id/imageView_cover"
         android:gravity="bottom"
         tools:ignore="Suspicious0dp">
 
@@ -57,6 +52,7 @@
 
         <ImageView
             android:id="@+id/image_prev"
+            android:contentDescription="@string/accessibility_prev"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/selectable_item_background"
@@ -69,6 +65,7 @@
 
         <ImageView
             android:id="@+id/image_playpause"
+            android:contentDescription="@string/play"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/selectable_item_background"
@@ -81,6 +78,7 @@
 
         <ImageView
             android:id="@+id/image_next"
+            android:contentDescription="@string/accessibility_next"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/selectable_item_background"
