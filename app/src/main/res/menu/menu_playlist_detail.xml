@@ -5,13 +5,13 @@
     <item
         android:id="@+id/action_clear_auto_playlist"
         android:orderInCategory="9"
-        android:title="Clear"
+        android:title="@string/clear"
         app:showAsAction="never" />
 
     <item
         android:id="@+id/action_delete_playlist"
         android:orderInCategory="9"
-        android:title="Delete playlist"
+        android:title="@string/delete_playlist"
         app:showAsAction="never" />
 
 
