@@ -2,9 +2,12 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
     <string name="app_name">Udacity Music Player</string>
+    <string name="content_authority">com.udacity.vinhphuc.musicplayer</string>
+
     <string name="action_settings">Settings</string>
 
     <string name="accessibility_play">Play</string>
+    <string name="accessibility_play_all">Play all</string>
     <string name="accessibility_pause">Pause</string>
     <string name="accessibility_next">Next</string>
     <string name="accessibility_prev">Previous</string>
@@ -32,9 +35,11 @@
 
     <string name="error_playing_track">Error Playing track</string>
 
+    <string name="auto_playlist">Auto\nPlaylist</string>
     <string name="playlist_last_added">Last Added</string>
     <string name="playlist_recently_played">Recently Played</string>
     <string name="playlist_top_tracks">My Top Tracks</string>
+    <string name="playlist_favourite_tracks">Favourite Songs</string>
 
     <string name="linkedin">LinkedIn</string>
     <string name="github">GitHub</string>
@@ -64,6 +69,7 @@
     <string name="search">Search</string>
     <string name="action_shuffle_all">Shuffle All</string>
     <string name="action_equalizer">Equalizer</string>
+    <string name="not_found_equalizer">Equalizer not found</string>
     <string name="search_library">Search Library</string>
 
     <string name="select_theme">Select Theme</string>
@@ -102,8 +108,11 @@
     <string name="colored_nav_bar">Colored Navigation Bar</string>
     <string name="colored_nav_bar_summary">Toggle navigation bar coloring</string>
 
+    <string name="albumart">The album art of the song</string>
     <string name="albumart_lockscreen">Lockscreen</string>
     <string name="albumart_lockscreen_summary">Show album art in lockscreen</string>
+
+    <string name="artist_image">Artist image</string>
 
     <string name="load_artist_album_image">Load artist/album images</string>
     <string name="load_artist_album_image_summary">Load artist/album images from lastfm</string>
@@ -113,10 +122,10 @@
 
     <string name="gestures">Gestures</string>
     <string name="switching_tracks_by_gestures">Switching tracks using gestures</string>
-    <string name="widget_standard">Timber standard widget</string>
-    <string name="widget_small">Timber small widget</string>
-    <string name="tap_to_start">Tap to start Timber</string>
-    <string name="widget_white">Timber light widget</string>
+    <string name="widget_standard">MusicPlayer standard widget</string>
+    <string name="widget_small">MusicPlayer small widget</string>
+    <string name="tap_to_start">Tap to start MusicPlayer</string>
+    <string name="widget_white">MusicPlayer light widget</string>
 
     <string name="count_song"><xliff:g id="count">%d</xliff:g> song</string>
     <string name="count_songs"><xliff:g id="count">%d</xliff:g> songs</string>
@@ -140,7 +149,14 @@
     <string name="play">Play</string>
 
     <string name="add_to_playlist">Add to playlist</string>
+    <string name="remove_from_playlist">Remove from playlist</string>
+    <string name="show_auto_playlists">Show auto playlists</string>
     <string name="hide_auto_playlists">Hide auto playlists</string>
+    <string name="playlist_image">Playlist image</string>
+
+    <string name="enter_playlist_name">Enter playlist name</string>
+    <string name="created_playlist">Created playlist</string>
+    <string name="unable_creating_playlist">Unable to create playlist</string>
 
     <string name="go_to_album">Go to album</string>
     <string name="go_to_artist">Go to artist</string>
@@ -150,24 +166,44 @@
     <string name="share">Share</string>
     <string name="delete_from_device">Delete from device</string>
     <string name="remove_from_queue">Remove from queue</string>
+    <string name="delete_playlist">Delete playlist</string>
+    <string name="are_you_sure_to_delete">Are you sure you want to delete</string>
+    <string name="are_you_sure_to_delete_playlist">Are you sure you want to delete playlist</string>
 
     <string name="nothing_found">Nothing found</string>
+    <string name="no_songs">No songs found on this device</string>
+    <string name="no_songs_queued">No songs in queue</string>
     <string name="folders">Folders</string>
     <string name="select_storage">Select storage</string>
 
-    <string name="lastfm_pref">Login to LastFM to scrobble</string>
-    <string name="lastfm_login_failture">Failed to Login</string>
-    <string name="lastfm_login">Login to LastFM</string>
-    <string name="lastfm_loged_in">Logged in as %s</string>
-
+    <string name="clear">Clear</string>
+    <string name="create">Create</string>
+    <string name="delete">Delete</string>
     <string name="cancel">Cancel</string>
-    <string name="always_load_album_images_lastfm">Always load album images from Last.fm</string>
-    <string name="always_load_album_images_lastfm_summary">If unchecked, album art will be fetched locally from song file if available</string>
 
     <string name="menu_show_lyrics">Show lyrics</string>
+    <string name="no_lyrics_checking_message">Sorry, We don\'t have lyrics for this song yet.\\n</string>
     <string name="no_lyrics">No lyrics found.</string>
     <string name="lyrics_makeitpersonal">Powered by <a href="https://makeitpersonal.co/">makeitpersonal.co</a></string>
     <string name="cast">Cast</string>
     <string name="now_playing_no_track_selected">\"No current track selected.</string>
     <string name="lyrics_loading">Loading...</string>
+
+    <string name="no_media_found">No media found</string>
+
+    <string name="read_external_storage_message">Udacity Music Player will need to read external storage to display songs on your device.</string>
+
+    <!--Delete Dialog-->
+    <string name="delete_playlist_dialog_title">Delete playlist?</string>
+    <string name="delete_song_dialog_title">Delete song?</string>
+
+    <!--Profile references-->
+    <string name="urlLinkedin">https://www.linkedin.com/in/phuc-truong-200296</string>
+    <string name="urlGitHub">https://github.com/thvphuc246</string>
+
+    <string name="fastscroller">Fast Scroller handle</string>
+    <string name="blur_frame">Blur frame</string>
+    <string name="popup_menu">Popup menu</string>
+    <string name="cast_menu">Cast</string>
+
 </resources>
