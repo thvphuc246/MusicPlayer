@@ -101,6 +101,7 @@
                     android:layout_weight="0.7"
                     android:background="?attr/selectableItemBackgroundBorderless"
                     android:paddingStart="50dp"
+                    android:paddingEnd="0dp"
                     android:scaleType="center"
                     app:materialIcon="skip_previous"
                     app:materialIconColor="#fff"
@@ -109,8 +110,6 @@
                 <FrameLayout
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
                     android:layout_marginEnd="5dp"
                     android:layout_weight="1">
 
@@ -134,10 +133,11 @@
                     android:layout_height="48dp"
                     android:layout_weight="0.7"
                     android:background="?attr/selectableItemBackgroundBorderless"
+                    android:paddingStart="0dp"
                     android:paddingEnd="50dp"
                     android:scaleType="center"
                     app:materialIcon="skip_next"
-                    app:materialIconColor="#fff"
+                    app:materialIconColor="@color/colorAccentBlack"
                     app:materialIconSize="35dp" />
             </LinearLayout>
 

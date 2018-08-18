@@ -112,6 +112,7 @@
                         android:layout_height="48dp"
                         android:background="?attr/selectableItemBackgroundBorderless"
                         android:paddingStart="5dp"
+                        android:paddingEnd="0dp"
                         android:scaleType="center" />
                 </LinearLayout>
             </RelativeLayout>
@@ -142,13 +143,15 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
-                    android:paddingStart="25dp" />
+                    android:paddingStart="25dp"
+                    android:paddingEnd="0dp"/>
 
                 <TextView
                     android:id="@+id/song_duration"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
+                    android:paddingStart="0dp"
                     android:paddingEnd="25dp" />
             </RelativeLayout>
 
@@ -176,18 +179,17 @@
                 <FrameLayout
                     android:layout_width="75dp"
                     android:layout_height="75dp"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
                     android:layout_marginEnd="5dp"
                     android:layout_weight="1">
 
 
                     <android.support.design.widget.FloatingActionButton
                         android:id="@+id/playpausefloating"
+                        android:contentDescription="@string/accessibility_play"
                         android:layout_width="55dp"
                         android:layout_height="55dp"
                         android:layout_gravity="center"
-                        android:clickable="true"
+                        android:focusable="true"
                         android:scaleType="fitCenter"
                         android:tag="bg_tint_accent_color" />
                 </FrameLayout>

@@ -5,6 +5,7 @@
     android:layout_height="150dp"
     android:foreground="?selectableItemBackgroundBorderless"
     android:paddingStart="25dp"
+    android:paddingEnd="0dp"
     app:cardUseCompatPadding="true"
     android:id="@+id/root_view"
     style="?attr/cardStyle">
