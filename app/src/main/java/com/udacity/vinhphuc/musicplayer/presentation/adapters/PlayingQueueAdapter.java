@@ -1,8 +1,11 @@
 package com.udacity.vinhphuc.musicplayer.presentation.adapters;
 
+import android.app.Activity;
 import android.os.Handler;
+import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -26,26 +29,26 @@ import com.udacity.vinhphuc.musicplayer.widgets.MusicVisualizer;
 import java.util.List;
 
 /**
- * Created by VINH PHUC on 30/7/2018
+ * Created by VINH PHUC on 4/8/2018
  */
-public class BaseQueueAdapter extends RecyclerView.Adapter<BaseQueueAdapter.ItemHolder> {
-    private final String TAG = BaseQueueAdapter.class.getSimpleName();
+public class PlayingQueueAdapter extends RecyclerView.Adapter<PlayingQueueAdapter.ItemHolder> {
+    private static final String TAG = "PlayingQueueAdapter";
 
-    public static int currentlyPlayingPosition;
+    public int currentlyPlayingPosition;
     private List<Song> arraylist;
-    private AppCompatActivity mContext;
+    private Activity mContext;
     private String ateKey;
 
-    public BaseQueueAdapter(AppCompatActivity context, List<Song> arraylist) {
+    public PlayingQueueAdapter(Activity context, List<Song> arraylist) {
         this.arraylist = arraylist;
         this.mContext = context;
-        currentlyPlayingPosition = MusicPlayer.getQueuePosition();
+        this.currentlyPlayingPosition = MusicPlayer.getQueuePosition();
         this.ateKey = Helpers.getATEKey(context);
     }
 
     @Override
     public ItemHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-        View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_song_app, null);
+        View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_playing_queue, null);
         ItemHolder ml = new ItemHolder(v);
         return ml;
     }
@@ -75,14 +78,9 @@ public class BaseQueueAdapter extends RecyclerView.Adapter<BaseQueueAdapter.Item
         setOnPopupMenuListener(itemHolder, i);
     }
 
-    @Override
-    public int getItemCount() {
-        return (null != arraylist ? arraylist.size() : 0);
-    }
-
     private void setOnPopupMenuListener(ItemHolder itemHolder, final int position) {
 
-        itemHolder.popupMenu.setOnClickListener(new View.OnClickListener() {
+        itemHolder.menu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -91,13 +89,14 @@ public class BaseQueueAdapter extends RecyclerView.Adapter<BaseQueueAdapter.Item
                     @Override
                     public boolean onMenuItemClick(MenuItem item) {
                         switch (item.getItemId()) {
+                            case R.id.popup_song_remove_queue:
+                                Log.v(TAG,"Removing " + position);
+                                MusicPlayer.removeTrackAtPosition(getSongAt(position).id, position);
+                                removeSongAt(position);
+                                notifyItemRemoved(position);
+                                break;
                             case R.id.popup_song_play:
                                 MusicPlayer.playAll(mContext, getSongIds(), position, -1, AppUtils.IdType.NA, false);
-                                break;
-                            case R.id.popup_song_play_next:
-                                long[] ids = new long[1];
-                                ids[0] = arraylist.get(position).id;
-                                MusicPlayer.playNext(mContext, ids, -1, AppUtils.IdType.NA);
                                 break;
                             case R.id.popup_song_goto_album:
                                 NavigationUtils.goToAlbum(mContext, arraylist.get(position).albumId);
@@ -105,29 +104,23 @@ public class BaseQueueAdapter extends RecyclerView.Adapter<BaseQueueAdapter.Item
                             case R.id.popup_song_goto_artist:
                                 NavigationUtils.goToArtist(mContext, arraylist.get(position).artistId);
                                 break;
-                            case R.id.popup_song_addto_queue:
-                                long[] id = new long[1];
-                                id[0] = arraylist.get(position).id;
-                                MusicPlayer.addToQueue(mContext, id, -1, AppUtils.IdType.NA);
-                                break;
                             case R.id.popup_song_addto_playlist:
-                                AddPlaylistDialog.newInstance(arraylist.get(position)).show(mContext.getSupportFragmentManager(), "ADD_PLAYLIST");
-                                break;
-                            case R.id.popup_song_share:
-                                AppUtils.shareTrack(mContext, arraylist.get(position).id);
-                                break;
-                            case R.id.popup_song_delete:
-                                long[] deleteIds = {arraylist.get(position).id};
-                                AppUtils.showDeleteDialog(mContext,arraylist.get(position).title, deleteIds, BaseQueueAdapter.this, position);
+                                AddPlaylistDialog.newInstance(arraylist.get(position))
+                                        .show(((AppCompatActivity) mContext).getSupportFragmentManager(), "ADD_PLAYLIST");
                                 break;
                         }
                         return false;
                     }
                 });
-                menu.inflate(R.menu.popup_song);
+                menu.inflate(R.menu.popup_playing_queue);
                 menu.show();
             }
         });
+    }
+
+    @Override
+    public int getItemCount() {
+        return (null != arraylist ? arraylist.size() : 0);
     }
 
     public long[] getSongIds() {
@@ -139,13 +132,21 @@ public class BaseQueueAdapter extends RecyclerView.Adapter<BaseQueueAdapter.Item
         return ret;
     }
 
-    public void removeSongAt(int i){
+    public Song getSongAt(int i) {
+        return arraylist.get(i);
+    }
+
+    public void addSongTo(int i, Song song) {
+        arraylist.add(i, song);
+    }
+
+    public void removeSongAt(int i) {
         arraylist.remove(i);
     }
 
     public class ItemHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         protected TextView title, artist;
-        protected ImageView albumArt, popupMenu;
+        protected ImageView albumArt, reorder, menu;
         private MusicVisualizer visualizer;
 
         public ItemHolder(View view) {
@@ -153,7 +154,8 @@ public class BaseQueueAdapter extends RecyclerView.Adapter<BaseQueueAdapter.Item
             this.title = (TextView) view.findViewById(R.id.song_title);
             this.artist = (TextView) view.findViewById(R.id.song_artist);
             this.albumArt = (ImageView) view.findViewById(R.id.albumArt);
-            this.popupMenu = (ImageView) view.findViewById(R.id.popup_menu);
+            this.menu = (ImageView) view.findViewById(R.id.popup_menu);
+            this.reorder = (ImageView) view.findViewById(R.id.reorder);
             visualizer = (MusicVisualizer) view.findViewById(R.id.visualizer);
             view.setOnClickListener(this);
         }
@@ -175,8 +177,6 @@ public class BaseQueueAdapter extends RecyclerView.Adapter<BaseQueueAdapter.Item
                     }, 50);
                 }
             }, 100);
-
         }
-
     }
 }

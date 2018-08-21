@@ -1,5 +1,6 @@
 package com.udacity.vinhphuc.musicplayer.presentation.adapters;
 
+import android.graphics.Color;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
@@ -7,6 +8,8 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
@@ -21,33 +24,45 @@ import com.udacity.vinhphuc.musicplayer.presentation.dialogs.AddPlaylistDialog;
 import com.udacity.vinhphuc.musicplayer.utils.AppUtils;
 import com.udacity.vinhphuc.musicplayer.utils.Helpers;
 import com.udacity.vinhphuc.musicplayer.utils.NavigationUtils;
+import com.udacity.vinhphuc.musicplayer.widgets.BubbleTextGetter;
 import com.udacity.vinhphuc.musicplayer.widgets.MusicVisualizer;
 
 import java.util.List;
 
 /**
- * Created by VINH PHUC on 30/7/2018
+ * Created by VINH PHUC on 3/8/2018
  */
-public class BaseQueueAdapter extends RecyclerView.Adapter<BaseQueueAdapter.ItemHolder> {
-    private final String TAG = BaseQueueAdapter.class.getSimpleName();
-
-    public static int currentlyPlayingPosition;
+public class SongsListAdapter extends BaseSongAdapter<SongsListAdapter.ItemHolder> implements BubbleTextGetter {
+    public int currentlyPlayingPosition;
     private List<Song> arraylist;
     private AppCompatActivity mContext;
+    private long[] songIDs;
+    private boolean isPlaylist;
+    private boolean animate;
+    private int lastPosition = -1;
     private String ateKey;
+    private long playlistId;
 
-    public BaseQueueAdapter(AppCompatActivity context, List<Song> arraylist) {
+    public SongsListAdapter(AppCompatActivity context, List<Song> arraylist, boolean isPlaylistSong, boolean animate) {
         this.arraylist = arraylist;
         this.mContext = context;
-        currentlyPlayingPosition = MusicPlayer.getQueuePosition();
+        this.isPlaylist = isPlaylistSong;
+        this.songIDs = getSongIds();
         this.ateKey = Helpers.getATEKey(context);
+        this.animate = animate;
     }
 
     @Override
     public ItemHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-        View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_song_app, null);
-        ItemHolder ml = new ItemHolder(v);
-        return ml;
+        if (isPlaylist) {
+            View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_song_playlist, null);
+            ItemHolder ml = new ItemHolder(v);
+            return ml;
+        } else {
+            View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_song, null);
+            ItemHolder ml = new ItemHolder(v);
+            return ml;
+        }
     }
 
     @Override
@@ -56,6 +71,11 @@ public class BaseQueueAdapter extends RecyclerView.Adapter<BaseQueueAdapter.Item
 
         itemHolder.title.setText(localItem.title);
         itemHolder.artist.setText(localItem.artistName);
+
+        ImageLoader.getInstance().displayImage(AppUtils.getAlbumArtUri(localItem.albumId).toString(),
+                itemHolder.albumArt, new DisplayImageOptions.Builder().cacheInMemory(true)
+                        .showImageOnLoading(R.drawable.ic_empty_music2)
+                        .resetViewBeforeLoading(true).build());
 
         if (MusicPlayer.getCurrentAudioId() == localItem.id) {
             itemHolder.title.setTextColor(Config.accentColor(mContext, ateKey));
@@ -66,13 +86,29 @@ public class BaseQueueAdapter extends RecyclerView.Adapter<BaseQueueAdapter.Item
                 itemHolder.visualizer.setVisibility(View.GONE);
             }
         } else {
-            itemHolder.title.setTextColor(Config.textColorPrimary(mContext, ateKey));
             itemHolder.visualizer.setVisibility(View.GONE);
+            if (isPlaylist) {
+                itemHolder.title.setTextColor(Color.WHITE);
+            } else {
+                itemHolder.title.setTextColor(Config.textColorPrimary(mContext, ateKey));
+            }
         }
-        ImageLoader.getInstance().displayImage(AppUtils.getAlbumArtUri(localItem.albumId).toString(),
-                itemHolder.albumArt, new DisplayImageOptions.Builder().cacheInMemory(true)
-                        .showImageOnLoading(R.drawable.ic_empty_music2).resetViewBeforeLoading(true).build());
+
+
+        if (animate && isPlaylist) {
+            if (AppUtils.isLollipop())
+                setAnimation(itemHolder.itemView, i);
+            else {
+                if (i > 10)
+                    setAnimation(itemHolder.itemView, i);
+            }
+        }
+
         setOnPopupMenuListener(itemHolder, i);
+    }
+
+    public void setPlaylistId(long playlistId) {
+        this.playlistId = playlistId;
     }
 
     @Override
@@ -87,12 +123,18 @@ public class BaseQueueAdapter extends RecyclerView.Adapter<BaseQueueAdapter.Item
             public void onClick(View v) {
 
                 final PopupMenu menu = new PopupMenu(mContext, v);
+
                 menu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                     @Override
                     public boolean onMenuItemClick(MenuItem item) {
                         switch (item.getItemId()) {
+                            case R.id.popup_song_remove_playlist:
+                                AppUtils.removeFromPlaylist(mContext, arraylist.get(position).id, playlistId);
+                                removeSongAt(position);
+                                notifyItemRemoved(position);
+                                break;
                             case R.id.popup_song_play:
-                                MusicPlayer.playAll(mContext, getSongIds(), position, -1, AppUtils.IdType.NA, false);
+                                MusicPlayer.playAll(mContext, songIDs, position, -1, AppUtils.IdType.NA, false);
                                 break;
                             case R.id.popup_song_play_next:
                                 long[] ids = new long[1];
@@ -118,7 +160,7 @@ public class BaseQueueAdapter extends RecyclerView.Adapter<BaseQueueAdapter.Item
                                 break;
                             case R.id.popup_song_delete:
                                 long[] deleteIds = {arraylist.get(position).id};
-                                AppUtils.showDeleteDialog(mContext,arraylist.get(position).title, deleteIds, BaseQueueAdapter.this, position);
+                                AppUtils.showDeleteDialog(mContext,arraylist.get(position).title, deleteIds, SongsListAdapter.this, position);
                                 break;
                         }
                         return false;
@@ -126,8 +168,42 @@ public class BaseQueueAdapter extends RecyclerView.Adapter<BaseQueueAdapter.Item
                 });
                 menu.inflate(R.menu.popup_song);
                 menu.show();
+                if (isPlaylist)
+                    menu.getMenu().findItem(R.id.popup_song_remove_playlist).setVisible(true);
             }
         });
+    }
+
+    @Override
+    public String getTextToShowInBubble(final int pos) {
+        if (arraylist == null || arraylist.size() == 0)
+            return "";
+        Character ch = arraylist.get(pos).title.charAt(0);
+        if (Character.isDigit(ch)) {
+            return "#";
+        } else
+            return Character.toString(ch);
+    }
+
+    private void setAnimation(View viewToAnimate, int position) {
+        // If the bound view wasn't previously displayed on screen, it's animated
+        if (position > lastPosition) {
+            Animation animation = AnimationUtils.loadAnimation(mContext, R.anim.abc_slide_in_bottom);
+            viewToAnimate.startAnimation(animation);
+            lastPosition = position;
+        }
+    }
+
+    @Override
+    public void updateDataSet(List<Song> arraylist) {
+        this.arraylist = arraylist;
+        this.songIDs = getSongIds();
+    }
+
+    @Override
+    public void removeSongAt(int i) {
+        arraylist.remove(i);
+        updateDataSet(arraylist);
     }
 
     public long[] getSongIds() {
@@ -139,8 +215,12 @@ public class BaseQueueAdapter extends RecyclerView.Adapter<BaseQueueAdapter.Item
         return ret;
     }
 
-    public void removeSongAt(int i){
-        arraylist.remove(i);
+    public Song getSongAt(int i) {
+        return arraylist.get(i);
+    }
+
+    public void addSongTo(int i, Song song) {
+        arraylist.add(i, song);
     }
 
     public class ItemHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -164,7 +244,9 @@ public class BaseQueueAdapter extends RecyclerView.Adapter<BaseQueueAdapter.Item
             handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    MusicPlayer.setQueuePosition(getAdapterPosition());
+                    playAll(mContext, songIDs, getAdapterPosition(), -1,
+                            AppUtils.IdType.NA, false,
+                            arraylist.get(getAdapterPosition()), false);
                     Handler handler1 = new Handler();
                     handler1.postDelayed(new Runnable() {
                         @Override
@@ -175,7 +257,6 @@ public class BaseQueueAdapter extends RecyclerView.Adapter<BaseQueueAdapter.Item
                     }, 50);
                 }
             }, 100);
-
         }
 
     }
