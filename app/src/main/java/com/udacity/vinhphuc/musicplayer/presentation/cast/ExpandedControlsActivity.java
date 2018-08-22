@@ -1,4 +1,4 @@
-package com.udacity.vinhphuc.musicplayer.cast;
+package com.udacity.vinhphuc.musicplayer.presentation.cast;
 
 import android.os.Bundle;
 import android.view.Menu;
