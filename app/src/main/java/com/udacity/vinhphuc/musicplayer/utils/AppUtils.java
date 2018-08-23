@@ -176,7 +176,7 @@ public class AppUtils {
         LastAdded(-1, R.string.playlist_last_added),
         RecentlyPlayed(-2, R.string.playlist_recently_played),
         TopTracks(-3, R.string.playlist_top_tracks),
-        FavouriteTracks(-4, R.string.favourite_tracks);
+        FavouriteTracks(-4, R.string.playlist_favourite_tracks);
 
         public long mId;
         public int mTitleId;
@@ -226,10 +226,10 @@ public class AppUtils {
     public static void showDeleteDialog(final Context context, final String name, final long[] list, final BaseSongAdapter adapter, final int pos) {
 
         new MaterialDialog.Builder(context)
-                .title("Delete song?")
-                .content("Are you sure you want to delete " + name + " ?")
-                .positiveText("Delete")
-                .negativeText("Cancel")
+                .title(R.string.delete_song_dialog_title)
+                .content(context.getResources().getString(R.string.are_you_sure_to_delete) + " " + name + " ?")
+                .positiveText(R.string.delete)
+                .negativeText(R.string.cancel)
                 .onPositive(new MaterialDialog.SingleButtonCallback() {
                     @Override
                     public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
@@ -252,7 +252,7 @@ public class AppUtils {
 
         new MaterialDialog.Builder(context)
                 .title(R.string.delete_song_dialog_title)
-                .content("Are you sure you want to delete " + name + " ?")
+                .content(context.getResources().getString(R.string.are_you_sure_to_delete) + " " + name + " ?")
                 .positiveText(R.string.delete)
                 .negativeText(R.string.cancel)
                 .onPositive(new MaterialDialog.SingleButtonCallback() {

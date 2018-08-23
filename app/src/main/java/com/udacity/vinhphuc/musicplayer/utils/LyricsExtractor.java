@@ -1,23 +1,79 @@
 package com.udacity.vinhphuc.musicplayer.utils;
 
+import android.support.annotation.Nullable;
+
+import com.udacity.vinhphuc.musicplayer.MusicPlayer;
+import com.udacity.vinhphuc.musicplayer.data.model.Lyrics;
+
+import org.jaudiotagger.audio.AudioFileIO;
+import org.jaudiotagger.tag.FieldKey;
+
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.nio.charset.Charset;
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.regex.Pattern;
 
 /**
  * Created by VINH PHUC on 4/8/2018
  */
 public class LyricsExtractor {
-    public static String getLyrics(File file){
+    @Nullable
+    public static String getLyrics (File file) {
+        String lyrics = null;
+
+        try {
+            lyrics = AudioFileIO.read(file).getTagOrCreateDefault().getFirst(FieldKey.LYRICS);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        if (lyrics == null || lyrics.trim().isEmpty() || !Lyrics.AbsSynchronizedLyrics.isSynchronized(lyrics)) {
+            File dir = file.getAbsoluteFile().getParentFile();
+
+            if (dir != null && dir.exists() && dir.isDirectory()) {
+                String format = ".*%s.*\\.(lrc|txt)";
+                String filename = file.getName();
+                String songtitle = Pattern.quote(MusicPlayer.getTrackName());
+
+                final ArrayList<Pattern> patterns = new ArrayList<>();
+                patterns.add(Pattern.compile(String.format(format, filename), Pattern.CASE_INSENSITIVE | Pattern.UNICODE_CASE));
+                patterns.add(Pattern.compile(String.format(format, songtitle), Pattern.CASE_INSENSITIVE | Pattern.UNICODE_CASE));
+
+                /*File[] files = dir.listFiles(f -> {
+                    for (Pattern pattern : patterns) {
+                        if (pattern.matcher(f.getName()).matches()) return true;
+                    }
+                    return false;
+                });
+
+                if (files != null && files.length > 0) {
+                    for (File f : files) {
+                        try {
+                            String newLyrics = FileUtil.read(f);
+                            if (newLyrics != null && !newLyrics.trim().isEmpty()) {
+                                if (Lyrics.AbsSynchronizedLyrics.isSynchronized(newLyrics)) {
+                                    return newLyrics;
+                                }
+                                lyrics = newLyrics;
+                            }
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }*/
+            }
+        }
+
+        return lyrics;
+    }
+    /*public static String getLyrics(File file){
         String filename = file.getName();
         String fileending = filename.substring(filename.lastIndexOf('.')+1,filename.length()).toLowerCase();
         try{
             switch(fileending){
                 case "mp3":
                     return getLyricsID3(file);
+                case "flac":
+                    return getLyricsVorbis(file);
                 case "mp4":
                 case "m4a":
                 case "aac":
@@ -223,5 +279,5 @@ public class LyricsExtractor {
 
     private static int byteArrayToIntLE(byte[] b) {
         return b[0] & 0xFF | (b[1] & 0xFF) << 8 | (b[2] & 0xFF) << 16 | (b[3] & 0xFF) << 24;
-    }
+    }*/
 }
