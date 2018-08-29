@@ -19,6 +19,7 @@ import android.widget.Toast;
 
 import com.udacity.vinhphuc.musicplayer.data.helpers.MusicPlaybackTrack;
 import com.udacity.vinhphuc.musicplayer.data.loaders.SongLoader;
+import com.udacity.vinhphuc.musicplayer.utils.AppUtils;
 import com.udacity.vinhphuc.musicplayer.utils.AppUtils.IdType;
 
 import java.util.Arrays;
@@ -736,6 +737,28 @@ public class MusicPlayer {
                 cursor = null;
             }
             return -1;
+        }
+        return -1;
+    }
+
+    public static final long createFavouritePlaylist(final Context context) {
+        final ContentResolver resolver = context.getContentResolver();
+        final String[] projection = new String[]{
+                MediaStore.Audio.PlaylistsColumns.NAME
+        };
+        final String selection = MediaStore.Audio.PlaylistsColumns.NAME + " = '" + context.getResources().getString(AppUtils.PlaylistType.FavouriteTracks.mTitleId) + "'";
+        Cursor cursor = resolver.query(MediaStore.Audio.Playlists.EXTERNAL_CONTENT_URI,
+                projection, selection, null, null);
+        if (cursor.getCount() <= 0) {
+            final ContentValues values = new ContentValues(1);
+            values.put(MediaStore.Audio.PlaylistsColumns.NAME, context.getResources().getString(AppUtils.PlaylistType.FavouriteTracks.mTitleId));
+            final Uri uri = resolver.insert(MediaStore.Audio.Playlists.EXTERNAL_CONTENT_URI,
+                    values);
+            return Long.parseLong(uri.getLastPathSegment());
+        }
+        if (cursor != null) {
+            cursor.close();
+            cursor = null;
         }
         return -1;
     }
