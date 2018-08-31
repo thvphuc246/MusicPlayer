@@ -18,13 +18,13 @@
         android:name=".UdacityMusicApp"
         android:allowBackup="false"
         android:icon="@mipmap/ic_launcher"
-        android:label="UdacityMusicApp${appNameSuffix}"
+        android:label="M-On!${appNameSuffix}"
         android:theme="@style/AppTheme.FullScreen.Light"
         tools:replace="android:allowBackup, android:label">
 
         <activity
             android:name=".presentation.activities.MainActivity"
-            android:label="UdacityMusicApp${appNameSuffix}"
+            android:label="M-On!${appNameSuffix}"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
