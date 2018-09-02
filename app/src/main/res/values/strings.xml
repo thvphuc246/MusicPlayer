@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
-    <string name="app_name">Udacity Music Player</string>
+    <string name="app_name">M-On!</string>
     <string name="content_authority">com.udacity.vinhphuc.musicplayer</string>
 
     <string name="action_settings">Settings</string>
