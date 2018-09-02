@@ -37,10 +37,10 @@
         android:layout_alignTop="@id/folder_fragment_recycler_view"
         android:layout_marginBottom="4dp"
         android:layout_marginTop="4dp"
-        android:visibility="invisible" />
+        android:visibility="visible" />
 
     <ProgressBar
-        android:id="@id/progressBar"
+        android:id="@+id/progressBar"
         style="?android:progressBarStyleLarge"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

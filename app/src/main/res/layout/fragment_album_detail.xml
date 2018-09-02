@@ -111,6 +111,7 @@
         style="@style/FabStyle"
         android:tag="bg_tint_accent_color"
         android:visibility="visible"
+        android:src="@drawable/btn_playback_play"
         app:layout_anchor="@id/app_bar"
         app:layout_anchorGravity="bottom|end" />
 
