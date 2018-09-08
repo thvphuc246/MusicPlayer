@@ -45,6 +45,8 @@ import com.udacity.vinhphuc.musicplayer.utils.Helpers;
 import com.udacity.vinhphuc.musicplayer.utils.NavigationUtils;
 import com.udacity.vinhphuc.musicplayer.utils.slidinguppanel.SlidingUpPanelLayout;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import io.fabric.sdk.android.Fabric;
 import java.util.HashMap;
 import java.util.Map;
@@ -59,7 +61,9 @@ public class MainActivity extends BaseActivity implements ATEActivityThemeCustom
     private Map<String, Runnable> navigationMap = new HashMap<String, Runnable>();
     private Handler navDrawerRunnable = new Handler();
     private Runnable runnable;
-    private DrawerLayout mDrawerLayout;
+    @BindView(R.id.drawer_layout)
+    DrawerLayout mDrawerLayout;
+
     private boolean isDarkTheme;
 
     private Runnable navigateLibrary = new Runnable() {
@@ -165,6 +169,7 @@ public class MainActivity extends BaseActivity implements ATEActivityThemeCustom
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ButterKnife.bind(this);
 
         navigationMap.put(Constants.NAVIGATE_LIBRARY, navigateLibrary);
         navigationMap.put(Constants.NAVIGATE_PLAYLIST, navigatePlaylist);
@@ -174,7 +179,7 @@ public class MainActivity extends BaseActivity implements ATEActivityThemeCustom
         navigationMap.put(Constants.NAVIGATE_ARTIST, navigateArtist);
         navigationMap.put(Constants.NAVIGATE_LYRICS, navigateLyrics);
 
-        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        //mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         panelLayout = (SlidingUpPanelLayout) findViewById(R.id.sliding_layout);
 
         navigationView = (NavigationView) findViewById(R.id.nav_view);
