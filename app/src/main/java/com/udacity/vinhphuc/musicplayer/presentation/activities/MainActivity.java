@@ -53,16 +53,18 @@ import java.util.Map;
 
 public class MainActivity extends BaseActivity implements ATEActivityThemeCustomizer {
 
-    private SlidingUpPanelLayout panelLayout;
-    private NavigationView navigationView;
+    @BindView(R.id.drawer_layout)
+    DrawerLayout mDrawerLayout;
+    @BindView(R.id.sliding_layout)
+    SlidingUpPanelLayout panelLayout;
+    @BindView(R.id.nav_view)
+    NavigationView navigationView;
     private TextView songtitle, songartist;
     private ImageView albumart;
     private String action;
     private Map<String, Runnable> navigationMap = new HashMap<String, Runnable>();
     private Handler navDrawerRunnable = new Handler();
     private Runnable runnable;
-    @BindView(R.id.drawer_layout)
-    DrawerLayout mDrawerLayout;
 
     private boolean isDarkTheme;
 
@@ -180,9 +182,9 @@ public class MainActivity extends BaseActivity implements ATEActivityThemeCustom
         navigationMap.put(Constants.NAVIGATE_LYRICS, navigateLyrics);
 
         //mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        panelLayout = (SlidingUpPanelLayout) findViewById(R.id.sliding_layout);
+        //panelLayout = (SlidingUpPanelLayout) findViewById(R.id.sliding_layout);
 
-        navigationView = (NavigationView) findViewById(R.id.nav_view);
+        //navigationView = (NavigationView) findViewById(R.id.nav_view);
         View header = navigationView.inflateHeaderView(R.layout.nav_header);
 
         albumart = (ImageView) header.findViewById(R.id.album_art);
