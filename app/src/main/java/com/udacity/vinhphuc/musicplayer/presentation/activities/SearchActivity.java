@@ -31,6 +31,9 @@ import java.util.List;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 /**
  * Created by VINH PHUC on 24/7/2018
  */
@@ -40,12 +43,16 @@ public class SearchActivity extends BaseActivity
     @Nullable
     private AsyncTask mSearchTask = null;
 
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
+    @BindView(R.id.search_recycler_view)
+    RecyclerView recyclerView;
+
     private SearchView mSearchView;
     private InputMethodManager mImm;
     private String queryString;
 
     private SearchAdapter adapter;
-    private RecyclerView recyclerView;
 
     private List<Object> searchResults = Collections.emptyList();
 
@@ -54,14 +61,15 @@ public class SearchActivity extends BaseActivity
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
+        ButterKnife.bind(this);
 
         mImm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+//        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        recyclerView = (RecyclerView) findViewById(R.id.search_recycler_view);
+//        recyclerView = (RecyclerView) findViewById(R.id.search_recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         adapter = new SearchAdapter(this);
         recyclerView.setAdapter(adapter);
