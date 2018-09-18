@@ -92,11 +92,11 @@ public class PlaylistDetailActivity extends BaseActivity
             new loadTopTracks().execute("");
         }
     };
-    private Runnable playlistFavouriteTracks = new Runnable() {
+    /*private Runnable playlistFavouriteTracks = new Runnable() {
         @Override
         public void run() { new loadFavouriteTracks().execute("");
         }
-    };
+    };*/
     private Runnable playlistUsercreated = new Runnable() {
         @Override
         public void run() { new loadUserCreatedPlaylist().execute("");
@@ -122,7 +122,7 @@ public class PlaylistDetailActivity extends BaseActivity
         playlistsMap.put(Constants.NAVIGATE_PLAYLIST_LASTADDED, playlistLastAdded);
         playlistsMap.put(Constants.NAVIGATE_PLAYLIST_RECENT, playlistRecents);
         playlistsMap.put(Constants.NAVIGATE_PLAYLIST_TOPTRACKS, playlistToptracks);
-        playlistsMap.put(Constants.NAVIGATE_PLAYLIST_FAVOURITETRACKS, playlistFavouriteTracks);
+        //playlistsMap.put(Constants.NAVIGATE_PLAYLIST_FAVOURITETRACKS, playlistFavouriteTracks);
         playlistsMap.put(Constants.NAVIGATE_PLAYLIST_USERCREATED, playlistUsercreated);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -374,7 +374,7 @@ public class PlaylistDetailActivity extends BaseActivity
         }
     }
 
-    private class loadFavouriteTracks extends AsyncTask<String, Void, String> {
+    /*private class loadFavouriteTracks extends AsyncTask<String, Void, String> {
 
         @Override
         protected String doInBackground(String... params) {
@@ -392,7 +392,7 @@ public class PlaylistDetailActivity extends BaseActivity
         @Override
         protected void onPreExecute() {
         }
-    }
+    }*/
 
     private class loadUserCreatedPlaylist extends AsyncTask<String, Void, String> {
 
