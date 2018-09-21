@@ -3,4 +3,7 @@
     <option name="FONT_SIZE" value="14" />
     <option name="FONT_FAMILY" value="Roboto Mono" />
   </component>
+  <component name="EditorSettings">
+    <option name="IS_WHEEL_FONTCHANGE_ENABLED" value="true" />
+  </component>
 </application>
