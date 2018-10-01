@@ -174,7 +174,7 @@
                     android:scaleType="center"
                     app:materialIcon="skip_previous"
                     app:materialIconColor="?attr/iconColor"
-                    app:materialIconSize="35dp" />
+                    app:materialIconSize="45dp" />
 
                 <FrameLayout
                     android:layout_width="75dp"
@@ -186,8 +186,8 @@
                     <android.support.design.widget.FloatingActionButton
                         android:id="@+id/playpausefloating"
                         android:contentDescription="@string/accessibility_play"
-                        android:layout_width="55dp"
-                        android:layout_height="55dp"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
                         android:layout_gravity="center"
                         android:focusable="true"
                         android:scaleType="fitCenter"
@@ -205,7 +205,7 @@
                     android:scaleType="center"
                     app:materialIcon="skip_next"
                     app:materialIconColor="?attr/iconColor"
-                    app:materialIconSize="35dp" />
+                    app:materialIconSize="45dp" />
             </LinearLayout>
 
         </LinearLayout>

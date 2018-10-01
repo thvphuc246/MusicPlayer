@@ -57,7 +57,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/selectable_item_background"
             android:tint="@android:color/black"
-            android:src="@drawable/ic_skip_previous_white_36dp" />
+            android:src="@drawable/ic_previous_track" />
 
         <TextView
             android:layout_width="match_parent"
@@ -71,7 +71,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/selectable_item_background"
             android:tint="@android:color/black"
-            android:src="@drawable/ic_play_white_36dp" />
+            android:src="@drawable/ic_play" />
 
         <TextView
             android:layout_width="match_parent"
@@ -85,7 +85,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/selectable_item_background"
             android:tint="@android:color/black"
-            android:src="@drawable/ic_skip_next_white_36dp" />
+            android:src="@drawable/ic_next_track" />
 
         <TextView
             android:layout_width="match_parent"
