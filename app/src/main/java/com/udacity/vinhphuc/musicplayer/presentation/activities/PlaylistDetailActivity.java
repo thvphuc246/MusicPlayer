@@ -285,9 +285,9 @@ public class PlaylistDetailActivity extends BaseActivity
             case Constants.NAVIGATE_PLAYLIST_TOPTRACKS:
                 AppUtils.clearTopTracks(this);
                 break;
-            case Constants.NAVIGATE_PLAYLIST_FAVOURITETRACKS:
+            /*case Constants.NAVIGATE_PLAYLIST_FAVOURITETRACKS:
                 AppUtils.clearFavouriteTracks(this);
-                break;
+                break;*/
         }
         Intent returnIntent = new Intent();
         setResult(Activity.RESULT_OK, returnIntent);
