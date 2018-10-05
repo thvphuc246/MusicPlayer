@@ -69,7 +69,7 @@ public class StandardWidget extends BaseWidget {
                 remoteViews.setTextViewText(R.id.textView_subtitle, t);
             }
             remoteViews.setImageViewResource(R.id.image_playpause,
-                    extras.getBoolean("playing") ? R.drawable.ic_pause_white_36dp : R.drawable.ic_play_white_36dp);
+                    extras.getBoolean("playing") ? R.drawable.ic_pause : R.drawable.ic_play);
             long albumId = extras.getLong("albumid");
             if (albumId != -1) {
                 Bitmap artwork = ImageLoader.getInstance().loadImageSync(AppUtils.getAlbumArtUri(albumId).toString());
