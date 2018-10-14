@@ -229,8 +229,8 @@ public class PlaylistAdapter extends RecyclerView.Adapter<PlaylistAdapter.ItemHo
                     return Constants.NAVIGATE_PLAYLIST_RECENT;
                 case 2:
                     return Constants.NAVIGATE_PLAYLIST_TOPTRACKS;
-                case 3:
-                    return Constants.NAVIGATE_PLAYLIST_FAVOURITETRACKS;
+                /*case 3:
+                    return Constants.NAVIGATE_PLAYLIST_FAVOURITETRACKS;*/
                 default:
                     return Constants.NAVIGATE_PLAYLIST_USERCREATED;
             }
