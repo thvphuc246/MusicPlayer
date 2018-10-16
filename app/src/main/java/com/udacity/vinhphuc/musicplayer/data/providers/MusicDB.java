@@ -30,7 +30,7 @@ public class MusicDB extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        SongProvider.getInstance(mContext).onCreate(db);
+        //SongProvider.getInstance(mContext).onCreate(db);
         MusicPlaybackState.getInstance(mContext).onCreate(db);
         RecentStore.getInstance(mContext).onCreate(db);
         SongPlayCount.getInstance(mContext).onCreate(db);
