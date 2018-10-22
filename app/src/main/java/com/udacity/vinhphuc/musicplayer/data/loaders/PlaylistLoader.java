@@ -71,9 +71,9 @@ public class PlaylistLoader {
         mPlaylistList.add(topTracks);
 
         /* Favourite Tracks */
-        final Playlist favouriteTracks = new Playlist(AppUtils.PlaylistType.FavouriteTracks.mId,
+        /*final Playlist favouriteTracks = new Playlist(AppUtils.PlaylistType.FavouriteTracks.mId,
                 resources.getString(AppUtils.PlaylistType.FavouriteTracks.mTitleId), -1);
-        //mPlaylistList.add(favouriteTracks);
+        mPlaylistList.add(favouriteTracks);*/
     }
 
 
