@@ -1,0 +1,108 @@
+apply plugin: 'com.android.application'
+apply plugin: 'io.fabric'
+
+android {
+    compileSdkVersion 26
+    defaultConfig {
+        applicationId "com.udacity.vinhphuc.musicplayer"
+        minSdkVersion 21
+        targetSdkVersion 26
+        versionCode 2
+        versionName "2.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        renderscriptTargetApi 20
+        renderscriptSupportModeEnabled true
+        multiDexEnabled true
+    }
+
+    signingConfigs {
+        myConfig {
+            storeFile file("udacitymusicplayer.jks")
+            storePassword "android"
+            keyAlias "udacitymusicplayer"
+            keyPassword "android"
+        }
+    }
+
+    buildTypes {
+        release {
+            signingConfig signingConfigs.myConfig
+
+            ext.enableCrashlytics = false
+            minifyEnabled false
+            manifestPlaceholders = [ appNameSuffix:""]
+
+            resValue "string", "fabric_api_key", "12345"
+            resValue "string", "play_billing_license_key", "12345"
+            resValue "string", "cast_app_id", "12345"
+
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            ext.enableCrashlytics = false
+            versionNameSuffix "-debug"
+            minifyEnabled false
+            applicationIdSuffix '.dev'
+            manifestPlaceholders = [ appNameSuffix:" Dev"]
+
+            resValue "string", "fabric_api_key", "12345"
+            resValue "string", "play_billing_license_key", "12345"
+            resValue "string", "cast_app_id", "12345"
+
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    lintOptions {
+        disable 'MissingTranslation'
+        disable 'ExtraTranslation'
+    }
+}
+
+repositories {
+    jcenter()
+    maven { url 'https://maven.fabric.io/public' }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'com.android.support:appcompat-v7:26.1.0'
+    implementation 'com.android.support:support-v13:26.1.0'
+    implementation 'com.android.support:design:26.1.0'
+    implementation 'com.android.support:cardview-v7:26.1.0'
+    implementation 'com.android.support:recyclerview-v7:26.1.0'
+    implementation 'com.android.support:palette-v7:26.1.0'
+    implementation 'com.android.support:percent:26.1.0'
+    implementation 'com.android.support:mediarouter-v7:26.1.0'
+
+    implementation 'com.google.android.gms:play-services-cast-framework:16.0.2'
+    implementation 'com.android.support:multidex:1.0.3'
+
+    implementation 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
+    implementation 'com.squareup.retrofit:retrofit:1.9.0'
+    implementation 'com.squareup.okhttp:okhttp-urlconnection:2.7.5'
+    implementation 'com.squareup.okhttp:okhttp:2.7.5'
+    implementation 'com.google.code.gson:gson:2.8.5'
+    implementation 'de.Maxr1998:track-selector-lib:1.2'
+    implementation 'net.steamcrafted:materialiconlib:1.1.4'
+    implementation 'org.nanohttpd:nanohttpd:2.3.1'
+
+    implementation 'com.afollestad.material-dialogs:core:0.9.4.5'
+    implementation 'com.afollestad.material-dialogs:commons:0.9.4.5'
+
+    implementation 'com.github.AdrienPoupa:jaudiotagger:2.2.3'
+
+    implementation('com.github.thvphuc246:app-theme-engine:0.5.3') {
+        transitive = true
+    }
+
+    implementation('com.crashlytics.sdk.android:crashlytics:2.9.4@aar') {
+        transitive = true
+    }
+
+    implementation 'com.jakewharton:butterknife:8.8.1'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
+
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+}

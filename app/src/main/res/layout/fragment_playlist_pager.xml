@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+
+    <FrameLayout
+        android:id="@+id/vg_cover"
+        android:layout_width="match_parent"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="40dp"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="60dp">
+
+        <ImageView
+            android:id="@+id/playlist_image"
+            android:contentDescription="@string/playlist_image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:transitionName="transition_album_art"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/foreground"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:transitionName="transition_foreground"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginBottom="20dp"
+            android:layout_marginStart="30dp"
+            android:layout_gravity="bottom|start">
+            <TextView
+                android:textSize="28sp"
+                android:textStyle="bold"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:layout_marginEnd="13dp"
+                android:textColor="#ffffff"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/playlist_name"
+                android:transitionName="transition_playlist_name"/>
+            <TextView
+                android:textSize="15sp"
+                android:maxLines="1"
+                android:paddingTop="3dp"
+                android:ellipsize="end"
+                android:textColor="#ffffff"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/song_count"
+                />
+            <TextView
+                android:textSize="15sp"
+                android:maxLines="1"
+                android:paddingTop="3dp"
+                android:ellipsize="end"
+                android:textColor="#ffffff"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/runtime"
+                />
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_gravity="top|end"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="40dp"
+            android:textSize="35sp"
+            android:maxLines="2"
+            android:ellipsize="end"
+            android:textColor="#ffffff"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/playlist_number"/>
+
+        <TextView
+            android:id="@+id/playlist_type"
+            android:layout_width="119dp"
+            android:layout_height="97dp"
+            android:layout_gravity="top|start"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="15dp"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:text="@string/auto_playlist"
+            android:textColor="#ffffff"
+            android:textSize="15sp"
+            android:visibility="gone" />
+
+
+    </FrameLayout>
+
+</RelativeLayout>
